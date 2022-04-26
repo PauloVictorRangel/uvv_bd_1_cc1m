@@ -43,10 +43,6 @@ Foi proposto a criação e implementação do projeto lógico apresentado nos ca
 
 Para a criação do projeto lógico, foi utilizado o SQL Power Architect, uma ferramenta de modelagem e perfil de dados.
 
-O arquivo do projeto lógico proposto se encontra neste repositório, dentro do subdiretório [Pset1](https://github.com/PVctorrangel/uvv_bd_1_cc1m/blob/main/pset1/projeto_logico_elmasri.architect).
-
-![imagem meu projeto lógico](https://github.com/PVctorrangel/uvv_bd_1_cc1m/blob/main/imgPset1/projeto_logico_elmasri.jpeg)
-
 A partir desse projeto lógico criado no SQL Power Architect foram gerados dois scripts para os SGBD: **PostgreSQL* e *MariaBD*/*MySQL**.
 
 Ambos os scripts apresentam suas tabelas e colunas comentadas de acordo com os anexos fornecidos pelo professor Abrantes.
@@ -63,8 +59,6 @@ Como informado pelo professor, o primeiro passo é a criação de um usuário. P
 >
 > Todos os comandos foram executados por meio de um terminal Linux.
 
-![comando create user postgreSQL](https://github.com/PVctorrangel/uvv_bd_1_cc1m/blob/main/imgPset1/createuser_postgreSQL.jpeg)
-
 * `createuser`: Comando para criar a role do usuário.
 * `dPs`: Privilégios concedidos ao usuário criado.
 * Senha para o usuário criado: 123456
@@ -74,16 +68,15 @@ Como informado pelo professor, o primeiro passo é a criação de um usuário. P
 
 Com o usuário já criado, agora podemos criar o banco de dados de acordo com os passos informados no **Pset1**. 
 
-![comando create database postgreSQL](https://github.com/PVctorrangel/uvv_bd_1_cc1m/blob/main/imgPset1/create_database_postgreSQL.jpeg)
+![comando create database postgreSQL]
 
 Agora que o banco de dados foi criado, está na hora de criar o `schema`, local onde será armazenado o script com os comandos para a implementação do projeto lógico.
 
-![comando create database postgreSQL](https://github.com/PVctorrangel/uvv_bd_1_cc1m/blob/main/imgPset1/create_schema_postgreSQL.jpeg)
+![comando create database postgreSQL]
 
 Com isso, finalizamos a etapa de criação dentro do **PostgreSQL**. Com o `schema` criado, podemos implementar o projeto lógico dentro do banco de dados postgres.
 
-O script completo com os comandos de criação e implementação se encontra dentro deste subdiretório [Pset1](https://github.com/PVctorrangel/uvv_bd_1_cc1m/blob/main/pset1/script_PostgreSQL.txt).
-
+O script completo com os comandos de criação e implementação se encontra dentro deste subdiretório [Pset1]
 ## MariaBD/MySQL
 
 O **MariaDB* é um sistema de gerenciamento de banco de dados que surgiu como fork do *MySQL*. Na maioria dos aspectos o *MariaDB* vai funcionar exatamente como o *MySQL**. Ambos são capazes de criar um banco de dados para armazenamento e manipulação de dados, definindo a relação de cada tabela.
@@ -96,7 +89,7 @@ Como informado pelo professor, o primeiro passo é a criação de um usuário. P
 >
 > Todos os comandos foram executados por meio de um terminal Windows.
 
-![Comando create user MySQL](https://github.com/ PVctorrangel/uvv_bd_1_cc1m/blob/main/imgPset1/create_user_MySQL.jpeg)
+![Comando create user MySQL]
 
 * `create user`: Comando para criar o usuário.
 * `grant`: Comando que concede os privilégios ao usuário.
@@ -104,10 +97,10 @@ Como informado pelo professor, o primeiro passo é a criação de um usuário. P
 
 Com o usuário já criado, agora podemos criar o banco de dados de acordo com os passos informados no **Pset1**.
 
-![Comando create database MySQL](https://github.com/ PVctorrangel/uvv_bd_1_cc1m/blob/main/imgPset1/create_database_MySQL.jpeg)
+![Comando create database MySQL]
 
 Com isso, finalizamos a etapa de criação dentro do **MariaBD*/*MySQL**. Com o banco de dados criado, podemos implementar o projeto lógico e os dados.
 
-O script completo com os comandos de criação e implementação se encontra dentro deste subdiretório [Pset1](https://github.com/ PVctorrangel/uvv_bd_1_cc1m/blob/main/pset1/script_mariaBD.txt).
+O script completo com os comandos de criação e implementação se encontra dentro deste subdiretório [Pset1]
 
 ⚠️🚩 README em construção 🚩⚠️
