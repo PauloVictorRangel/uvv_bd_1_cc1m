@@ -102,5 +102,3 @@ Com o usuário já criado, agora podemos criar o banco de dados de acordo com os
 Com isso, finalizamos a etapa de criação dentro do **MariaBD*/*MySQL**. Com o banco de dados criado, podemos implementar o projeto lógico e os dados.
 
 O script completo com os comandos de criação e implementação se encontra dentro deste subdiretório [Pset1]
-
-⚠️🚩 README em construção 🚩⚠️
