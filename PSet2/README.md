@@ -31,9 +31,9 @@ Este Pset é dependente do [Pset1]( https://github.com/PauloVictorRangel/uvv_bd_
 Prepare um relatório que mostre a média salarial dos funcionários
 de cada departamento.
 
-SQL
+ #SQL
 SELECT numero_departamento, AVG(salario) as media_de_cada_departamento
-FROM funcionarios
+FROM funcionario
 GROUP BY numero_departamento;
 
 
