@@ -31,7 +31,7 @@ Este Pset é dependente do [Pset1]( https://github.com/PauloVictorRangel/uvv_bd_
 Prepare um relatório que mostre a média salarial dos funcionários
 de cada departamento.
 
- #SQL
+# SQL
 SELECT numero_departamento, AVG(salario) as media_de_cada_departamento
 FROM funcionario
 GROUP BY numero_departamento;
@@ -44,7 +44,7 @@ GROUP BY numero_departamento;
 Prepare um relatório que mostre a média salarial dos homens e das
 mulheres.
 
-SQL
+# SQL
 SELECT sexo, AVG(salario) as media_salarial
 FROM funcionarios
 GROUP BY sexo;
@@ -58,7 +58,7 @@ Prepare um relatório que liste o nome dos departamentos e, para
 cada departamento, inclua as seguintes informações de seus funcionários: o nome
 completo, a data de nascimento, a idade em anos completos e o salário.
 
-SQL
+# SQL
 SELECT departamentos.nome_departamento, concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, funcionarios.data_nascimento,  year(curdate()) - year(data_nascimento) as idade, funcionarios.salario as salario 
 FROM departamentos
 INNER JOIN funcionarios ON departamentos.numero_departamento=funcionarios.numero_departamento;
