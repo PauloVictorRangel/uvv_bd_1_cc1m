@@ -1,0 +1,133 @@
+-- - Questão 1:
+
+SELECT numero_departamento, AVG (salario) as media_de_cada_departamento
+DE funcionario
+GRUPO POR numero_departamento;
+
+-- - Questão 2:
+
+SELECT sexo, AVG (salario) como media_salarial
+DE funcionario
+GRUPO POR sexo;
+
+-- - Questão 3:
+
+SELECT  departamento . nome_departamento , concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) as nome, funcionario . data_nascimento , year(curdate()) - year(data_nascimento) as idade, funcionario . salario  como salario
+DO departamento
+INNER JOIN funciona no  departamento . numero_departamento = funcionario . numero_departamento;
+
+-- - Questão 4:
+
+SELECT concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) as nome, funcionario . data_nascimento , year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, salario * 1 . 2  como salario_reajustado
+DE funcionario
+ONDE salário <  35 . 000
+União
+SELECT concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) as nome, funcionario . data_nascimento , year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, salario * 1 . 15  como salario_reajustado
+DE funcionario
+ONDE salario >=  35 . 000;
+
+-- - Questão 5:
+
+SELECT  departamento . nome_departamento ,
+CASO QUANDO departamento . cpf_gerente = funcionario . CPF
+THEN concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome)
+TERMINAR como Gerente,
+concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) como funcionarios
+DO departamento
+INNER JOIN funciona no  departamento . numero_departamento = funcionario . numero_departamento
+GROUP BY nome_departamento ASC , salario DESC;
+
+-- - Questão 6:
+
+SELECT  departamento . nome_departamento ,
+concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) as funcionario_com_dependente,
+concat( dependente . nome_dependente , "  " , funcionario . nome_meio , " . " , funcionario . ultimo_nome ) como dependente,
+year(curdate()) - year( dependente . data_nascimento ) as idade_dependente,
+CASE dependente . sexo
+QUANDO ' M ' ENTÃO ' Masculino '
+QUANDO ' F ' ENTÃO ' Feminino '
+END como sexo_dependente
+DE funcionario
+INNER JOIN dependente em  dependente . cpf_funcionario = funcionario . CPF
+INNER JOIN departamento em  departamento . numero_departamento  =  funcionario . numero_departamento;
+
+-- - Questão 7:
+
+SELECT  departamento . nome_departamento , concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) as nome, salario
+de funcionario
+INNER JOIN departamento no  funcionario . numero_departamento = departamento . numero_departamento
+LEFT JOIN depende do  funcionamento . cpf = dependente . cpf_funcionario
+ONDE  depende . nome_dependente é null;
+
+-- - Questão 8:
+
+SELECT  departamento . nome_departamento ,
+concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) como funcionario,
+trabalha_em . numero_projeto  as nº_projeto, projeto . nome_projeto  como nome_do_projeto, trabalha_em . horas  as horas_trabalhadas
+DE funcionario
+INNER JOIN departamento em  departamento . numero_departamento = funcionario . numero_departamento
+LEFT JOIN projeto no  funcionario . numero_departamento = projeto . numero_departamento
+LEFT JOIN trabalha_em no  projeto . numero_projeto = trabalha_em . numero_projeto
+ONDE  funcionario . cpf = trabalha_em . cpf_funcionario
+ENCOMENDA POR  departamento . nome_departamento  DESC;
+
+-- - Questão 9:
+
+SELECT  departamento . nome_departamento , projeto . nome_projeto , SUM ( trabalha_em . horas ) as horas_somadas
+da trabalha_em
+INNER JOIN projeto em  trabalha_em . numero_projeto  =  projeto . numero_projeto
+INNER JOIN departamento em  departamento . numero_departamento  =  projeto . numero_departamento
+GRUPO POR  departamento . nome_departamento , projeto . nome_projeto;
+
+-- - Questão 10:
+
+SELECT numero_departamento, AVG (salario) as media_de_cada_departamento
+DE funcionario
+GRUPO POR numero_departamento;
+
+-- - Questão 11:
+
+SELECT concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) as funcionario, projeto . nome_projeto , ( trabalha_em . horas  *  50 ) as valor_total , trabalha_em . horas  as horas_trabalhadas
+de funcionario
+INNER JOIN trabalha_em no  trabalha_em . cpf_funcionario  =  funcionario . CPF
+INNER JOIN projeto no  projeto . numero_projeto  =  trabalha_em . numero_projeto
+ORDEM POR nome_projeto;
+
+-- - Questão 12:
+
+SELECT  departamento . nome_departamento , projeto . nome_projeto , concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) as funcionario, trabalha_em . horas
+DE trabalha_em
+INNER JOIN funciona no  trabalha_em . cpf_funcionario  =  funcionario . CPF
+INNER JOIN projeto em  trabalha_em . numero_projeto  =  projeto . numero_projeto
+INNER JOIN departamento em  departamento . numero_departamento  =  funcionario . numero_departamento
+ONDE  trabalha_em . horas  =  0;
+
+-- - Questão 13:
+
+SELECIONAR
+concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) como funcionarios,
+year(curdate()) - year( funcionario . data_nascimento ) as idade_funcionario,
+concat( dependente . nome_dependente , "  " , funcionario . nome_meio , " . " , funcionario . ultimo_nome ) como dependente,
+year(curdate()) - year( dependente . data_nascimento ) as idade_dependente,
+CASE dependente . sexo
+QUANDO ' M ' ENTÃO ' Masculino '
+QUANDO ' F ' ENTÃO ' Feminino '
+END como sexo_dependente
+DE funcionario
+LEFT JOIN dependente em  dependente . cpf_funcionario = funcionario . CPF
+GRUPO POR idade_funcionario DESC , idade_dependente DESC;
+
+-- - Questão 14:
+
+SELECT  departamento . nome_departamento , conte ( funcionario .cpf ) como Total_Funcionarios _
+DO departamento
+INNER JOIN funcionario on  funcionario . numero_departamento  =  departamento . numero_departamento
+GRUPO POR  departamento . nome_departamento , departamento . numero_departamento , funcionario . numero_departamento
+ORDER BY Total_Funcionarios DESC;
+
+-- - Questão 15:
+
+SELECT concat(primeiro_nome, "  " , nome_meio, " . " ,ultimo_nome) como funcionarios, funcionario . numero_departamento , projeto . nome_projeto
+DE funcionario
+LEFT JOIN trabalha_em no  trabalha_em . cpf_funcionario  =  funcionario . CPF
+LEFT JOIN projeto no  projeto . numero_projeto = trabalha_em . numero_projeto;
