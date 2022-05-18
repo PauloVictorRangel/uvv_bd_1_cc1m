@@ -10,15 +10,8 @@
 
 ---
 
-[GIT](#git) •
-[GitHub](#github) •
-[Elmasri](#elmasri) •
-[PostgreSQL](#postgresql) •
-[MariaBD/MySQL](#mariabdmysql)
-
-
 ## GIT
-O `GIT` é um **Sistema de Controle de Versão*. Um *Sistema de Controle de Versão** é um sistema registra todas as alterações feitas em um
+O `GIT` é um *Sistema de Controle de Versão*. Um *Sistema de Controle de Versão* é um sistema registra todas as alterações feitas em um
 código fonte.
 
 Ele permite saber quem, quando e porquê uma determinada alteração no código foi feita e mantém um histórico recuperável de todo o código fonte.
@@ -95,10 +88,10 @@ Como informado pelo professor, o primeiro passo é a criação de um usuário. P
 * `grant`: Comando que concede os privilégios ao usuário.
 * `system mysql`: Comando para trocar de usuário.
 
-Com o usuário já criado, agora podemos criar o banco de dados de acordo com os passos informados no **Pset1**.
+Com o usuário já criado, agora podemos criar um banco de dados de acordo com as informações passadas no **Pset1**.
 
 ![Comando create database MySQL]
 
-Com isso, finalizamos a etapa de criação dentro do **MariaBD*/*MySQL**. Com o banco de dados criado, podemos implementar o projeto lógico e os dados.
+Com isso, finalizamos a etapa de criação dentro do *MariaBD*/*MySQL*. Com o banco já criado, conseguimos implementar tanto o projeto lógico e os dados.
 
 O script completo com os comandos de criação e implementação se encontra dentro deste subdiretório [Pset1]
