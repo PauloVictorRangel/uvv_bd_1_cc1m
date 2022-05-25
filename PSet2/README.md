@@ -45,9 +45,9 @@ Prepare um relatório que mostre a média salarial dos homens e das
 mulheres.
 
 ## SQL
-SELECT sexo, AVG(salario) as media_salarial
+``SELECT sexo, AVG(salario) as media_salarial
 FROM funcionarios
-GROUP BY sexo;
+GROUP BY sexo;``
 
 
 ---
