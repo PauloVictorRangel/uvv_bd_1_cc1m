@@ -32,9 +32,11 @@ Prepare um relatório que mostre a média salarial dos funcionários
 de cada departamento.
 
 ## SQL
-SELECT numero_departamento, AVG(salario) as media_de_cada_departamento
-FROM funcionario
-GROUP BY numero_departamento;
+``SELECT numero_departamento, AVG(salario) as media_de_cada_departamento``
+
+``FROM funcionario``
+
+``GROUP BY numero_departamento;``
 
 
 ---
@@ -45,9 +47,11 @@ Prepare um relatório que mostre a média salarial dos homens e das
 mulheres.
 
 ## SQL
-``SELECT sexo, AVG(salario) as media_salarial
-FROM funcionarios
-GROUP BY sexo;``
+``SELECT sexo, AVG(salario) as media_salarial``
+
+``FROM funcionarios``
+
+``GROUP BY sexo;``
 
 
 ---
@@ -59,9 +63,11 @@ cada departamento, inclua as seguintes informações de seus funcionários: o no
 completo, a data de nascimento, a idade em anos completos e o salário.
 
 ## SQL
-SELECT departamentos.nome_departamento, concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, funcionarios.data_nascimento,  year(curdate()) - year(data_nascimento) as idade, funcionarios.salario as salario 
-FROM departamentos
-INNER JOIN funcionarios ON departamentos.numero_departamento=funcionarios.numero_departamento;
+``SELECT departamentos.nome_departamento, concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, funcionarios.data_nascimento,  year(curdate()) - year(data_nascimento) as idade, funcionarios.salario as salario``
+
+``FROM departamentos``
+
+``INNER JOIN funcionarios ON departamentos.numero_departamento=funcionarios.numero_departamento;``
 
 
 ---
@@ -75,13 +81,17 @@ reajuste deve ser de 20%, e se o salário atual do funcionário for igual ou sup
 35.000 o reajuste deve ser de 15%.
 
 ## SQL
-SELECT concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, funcionarios.data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, salario*1.2 as salario_reajustado
-FROM funcionarios
-WHERE salario < 35.000
-Union
-SELECT concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, funcionarios.data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, salario*1.15 as salario_reajustado 
-FROM funcionarios
-WHERE salario >= 35.000;
+``SELECT concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, funcionarios.data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, salario*1.2 as salario_reajustado``
+
+``FROM funcionarios``
+
+``WHERE salario < 35.000``
+``Union``
+``SELECT concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, funcionarios.data_nascimento, year(curdate()) - year(data_nascimento) as idade, salario as salario_atual, salario*1.15 as salario_reajustado`` 
+
+``FROM funcionarios``
+
+``WHERE salario >= 35.000;``
 
 
 ---
@@ -94,14 +104,19 @@ tamento (em ordem crescente) e por salário dos funcionários (em ordem decres-
 cente).
 
 ## SQL
-SELECT departamentoss.nome_departamento, 
-CASE WHEN departamentos.cpf_gerente=funcionarios.cpf
+``SELECT departamentoss.nome_departamento,``
+
+``CASE WHEN departamentos.cpf_gerente=funcionarios.cpf
 THEN concat(primeiro_nome," ", nome_meio,".",ultimo_nome)
-END as Gerente,
-concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionarios
-FROM departamentos
-INNER JOIN funcionarios ON departamentos.numero_departamento=funcionarios.numero_departamento
-GROUP BY nome_departamento ASC, salario DESC;
+END as Gerente,``
+
+
+``concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionarios``
+``FROM departamentos``
+
+``INNER JOIN funcionarios ON departamentos.numero_departamento=funcionarios.numero_departamento``
+
+``GROUP BY nome_departamento ASC, salario DESC;``
 
 
 ---
@@ -115,17 +130,21 @@ dependente e o sexo (o sexo NÃO DEVE aparecer como M ou F, deve aparecer
 como “Masculino” ou “Feminino”)
 
 ## SQL
-SELECT departamentos.nome_departamento,
+``SELECT departamentos.nome_departamento,
 concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionario_com_dependente,
 concat(dependentes.nome_dependente," ", funcionarios.nome_meio,".",funcionarios.ultimo_nome) as dependente,
-year(curdate()) - year(dependentes.data_nascimento) as idade_dependente,
-CASE dependentes.sexo
+year(curdate()) - year(dependentes.data_nascimento) as idade_dependente,``
+
+``CASE dependentes.sexo
 WHEN 'M' THEN 'Masculino'
 WHEN 'F' THEN 'Feminino'
-END as sexo_dependente
-FROM funcionarios
-INNER JOIN dependentes ON dependentes.cpf_funcionario=funcionarios.cpf
-INNER JOIN departamentos ON departamentos.numero_departamento = funcionarios.numero_departamento;
+END as sexo_dependente``
+
+``FROM funcionarios``
+
+``INNER JOIN dependentes ON dependentes.cpf_funcionario=funcionarios.cpf``
+
+``INNER JOIN departamentos ON departamentos.numero_departamento = funcionarios.numero_departamento;``
 
 
 ---
@@ -136,11 +155,15 @@ Prepare um relatório que mostre, para cada funcionário que **NÃO
 TEM** dependente, seu nome completo, departamento e salário.
 
 ## SQL
-SELECT departamentos.nome_departamento, concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, salario
-FROM funcionarios
-INNER JOIN departamentos ON funcionarios.numero_departamento=departamentos.numero_departamento
-LEFT JOIN dependentes ON funcionarios.cpf=dependentes.cpf_funcionario
-WHERE dependentes.nome_dependente is null;
+``SELECT departamentos.nome_departamento, concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as nome, salario``
+
+``FROM funcionarios``
+
+``INNER JOIN departamentos ON funcionarios.numero_departamento=departamentos.numero_departamento``
+
+``LEFT JOIN dependentes ON funcionarios.cpf=dependentes.cpf_funcionario``
+
+``WHERE dependentes.nome_dependente is null;``
 
 
 ---
@@ -151,15 +174,21 @@ Prepare um relatório que mostre, para cada departamento, os projetos desse depa
 em cada projeto. Além disso inclua o número de horas trabalhadas por cada funcionário, em cada projeto.
 
 ## SQL
-SELECT departamentos.nome_departamento, 
+``SELECT departamentos.nome_departamento, 
 concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionario,
-trabalha_em.numero_projeto as nº_projeto, projeto.nome_projeto as nome_do_projeto, trabalha_em.horas as horas_trabalhadas
-FROM funcionarios
-INNER JOIN departamentos ON departamentos.numero_departamento=funcionarios.numero_departamento
-LEFT JOIN projeto ON funcionarios.numero_departamento=projeto.numero_departamento
-LEFT JOIN trabalha_em ON projeto.numero_projeto=trabalha_em.numero_projeto
-WHERE funcionarios.cpf=trabalha_em.cpf_funcionario
-ORDER BY departamentos.nome_departamento DESC;
+trabalha_em.numero_projeto as nº_projeto, projeto.nome_projeto as nome_do_projeto, trabalha_em.horas as horas_trabalhadas``
+
+``FROM funcionarios``
+
+``INNER JOIN departamentos ON departamentos.numero_departamento=funcionarios.numero_departamento``
+
+``LEFT JOIN projeto ON funcionarios.numero_departamento=projeto.numero_departamento``
+
+``LEFT JOIN trabalha_em ON projeto.numero_projeto=trabalha_em.numero_projeto``
+
+``WHERE funcionarios.cpf=trabalha_em.cpf_funcionario``
+
+``ORDER BY departamentos.nome_departamento DESC;``
 
 
 ---
@@ -170,11 +199,15 @@ Prepare um relatório que mostre a soma total das horas de cada
 projeto em cada departamento. Obs.: o relatório deve exibir o nome do departamento, o nome do projeto e a soma total das horas.
 
 ## SQL
-SELECT departamentos.nome_departamento, projeto.nome_projeto, SUM(trabalha_em.horas) as horas_somadas
-FROM trabalha_em
-INNER JOIN projeto ON trabalha_em.numero_projeto = projeto.numero_projeto
-INNER JOIN departamentos ON departamentos.numero_departamento = projeto.numero_departamento
-GROUP BY departamentos.nome_departamento, projeto.nome_projeto;
+``SELECT departamentos.nome_departamento, projeto.nome_projeto, SUM(trabalha_em.horas) as horas_somadas``
+
+``FROM trabalha_em``
+
+``INNER JOIN projeto ON trabalha_em.numero_projeto = projeto.numero_projeto``
+
+``INNER JOIN departamentos ON departamentos.numero_departamento = projeto.numero_departamento``
+
+``GROUP BY departamentos.nome_departamento, projeto.nome_projeto;``
 
 
 ---
@@ -185,9 +218,11 @@ Prepare um relatório que mostre a média salarial dos funcionários
 de cada departamento.
 
 ## SQL
-SELECT numero_departamento, AVG(salario) as media_de_cada_departamento
-FROM funcionarios
-GROUP BY numero_departamento;
+``SELECT numero_departamento, AVG(salario) as media_de_cada_departamento``
+
+``FROM funcionarios``
+
+``GROUP BY numero_departamento;``
 
 
 ---
@@ -199,11 +234,15 @@ Considerando que o valor pago por hora trabalhada em um projeto
 nome do projeto e o valor total que o funcionário receberá referente às horas trabalhadas naquele projeto.
 
 ## SQL
-SELECT concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionario, projeto.nome_projeto, (trabalha_em.horas * 50) as valor_total, trabalha_em.horas as horas_trabalhadas
-FROM funcionarios
-INNER JOIN trabalha_em ON trabalha_em.cpf_funcionario = funcionarios.cpf
-INNER JOIN projeto ON projeto.numero_projeto = trabalha_em.numero_projeto
-ORDER BY nome_projeto;
+``SELECT concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionario, projeto.nome_projeto, (trabalha_em.horas * 50) as valor_total, trabalha_em.horas as horas_trabalhadas``
+
+``FROM funcionarios``
+
+``INNER JOIN trabalha_em ON trabalha_em.cpf_funcionario = funcionarios.cpf``
+
+``INNER JOIN projeto ON projeto.numero_projeto = trabalha_em.numero_projeto``
+
+``ORDER BY nome_projeto;``
 
 
 ---
@@ -215,12 +254,17 @@ nos projetos e percebeu que alguns funcionários, mesmo estando alocadas à algu
 projeto, não registraram nenhuma hora trabalhada. Sua tarefa é preparar um relatório que liste o nome do departamento, o nome do projeto e o nome dos funcionários que, mesmo estando alocados a algum projeto, não registraram nenhuma hora trabalhada.
 
 ## SQL
-SELECT departamentos.nome_departamento, projeto.nome_projeto, concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionario, trabalha_em.horas
-FROM trabalha_em
-INNER JOIN funcionarios ON trabalha_em.cpf_funcionario = funcionarios.cpf
-INNER JOIN projeto ON trabalha_em.numero_projeto = projeto.numero_projeto
-INNER JOIN departamentos ON departamentos.numero_departamento = funcionarios.numero_departamento
-WHERE trabalha_em.horas = 0;
+``SELECT departamentos.nome_departamento, projeto.nome_projeto, concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionario, trabalha_em.horas``
+
+``FROM trabalha_em``
+
+``INNER JOIN funcionarios ON trabalha_em.cpf_funcionario = funcionarios.cpf``
+
+``INNER JOIN projeto ON trabalha_em.numero_projeto = projeto.numero_projeto``
+
+``INNER JOIN departamentos ON departamentos.numero_departamento = funcionarios.numero_departamento``
+
+``WHERE trabalha_em.horas = 0;``
 
 
 ---
@@ -236,18 +280,22 @@ presenteadas (funcionários e dependentes), o sexo e a idade em anos completos
 pela idade em anos completos, de forma decrescente.
 
 ## SQL
-SELECT
+``SELECT
 concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionarios,
 year(curdate()) - year(funcionarios.data_nascimento) as idade_funcionario,
 concat(dependentes.nome_dependente," ", funcionarios.nome_meio,".",funcionarios.ultimo_nome) as dependente,
-year(curdate()) - year(dependentes.data_nascimento) as idade_dependente,
-CASE dependentes.sexo
+year(curdate()) - year(dependentes.data_nascimento) as idade_dependente,``
+
+``CASE dependentes.sexo
 WHEN 'M' THEN 'Masculino'
 WHEN 'F' THEN 'Feminino'
-END as sexo_dependente
-FROM funcionarios
-LEFT JOIN dependente ON dependentes.cpf_funcionario=funcionarios.cpf
-GROUP BY idade_funcionario DESC, idade_dependente DESC;
+END as sexo_dependente``
+
+``FROM funcionarios``
+
+``LEFT JOIN dependente ON dependentes.cpf_funcionario=funcionarios.cpf``
+
+``GROUP BY idade_funcionario DESC, idade_dependente DESC;``
 
 
 ---
@@ -257,11 +305,15 @@ GROUP BY idade_funcionario DESC, idade_dependente DESC;
 Prepare um relatório que exiba quantos funcionários cada departamento tem.
 
 #### SQL
-SELECT departamentos.nome_departamento, count(funcionarios.cpf) as Total_Funcionarios
-FROM departamentos
-INNER JOIN funcionario ON funcionario.numero_departamento = departamentoss.numero_departamento
-GROUP BY departamentos.nome_departamento, departamentos.numero_departamento, funcionarios.numero_departamento
-ORDER BY Total_Funcionarios DESC;
+``SELECT departamentos.nome_departamento, count(funcionarios.cpf) as Total_Funcionarios``
+
+``FROM departamentos``
+
+``INNER JOIN funcionario ON funcionario.numero_departamento = departamentoss.numero_departamento``
+
+``GROUP BY departamentos.nome_departamento, departamentos.numero_departamento, funcionarios.numero_departamento``
+
+``ORDER BY Total_Funcionarios DESC;``
 
 
 ---
@@ -275,14 +327,17 @@ Atenção: se houver algum funcionário que não está alocado em nenhum projeto
 o nome completo e o departamento também devem aparecer no relatório.
 
 #### SQL
-SELECT concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionarios, funcionarios.numero_departamento, projeto.nome_projeto
-FROM funcionarios
-LEFT JOIN trabalha_em ON trabalha_em.cpf_funcionario = funcionarios.cpf
-LEFT JOIN projeto ON projeto.numero_projeto=trabalha_em.numero_projeto;
+``SELECT concat(primeiro_nome," ", nome_meio,".",ultimo_nome) as funcionarios, funcionarios.numero_departamento, projeto.nome_projeto``
+
+``FROM funcionarios``
+
+``LEFT JOIN trabalha_em ON trabalha_em.cpf_funcionario = funcionarios.cpf``
+
+``LEFT JOIN projeto ON projeto.numero_projeto=trabalha_em.numero_projeto;``
 
 
 ---
 
 # Declarações
 
-Foi um pouco satisfatório fazer este Pset, na hora de colocar o comando e ver ele funcionando é a melhor parte disparado.
+Conseguir usar os códigos da forma certa excepcional.
